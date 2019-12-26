@@ -7,13 +7,16 @@ import ParticipantList from './ParticipantList';
 
 const ManageParticipants = () => {
   const { changePage } = usePageContext();
-  const { participants, addParticipant, reorderParticipants } = useParticipantContext();
+  const {
+    participants, addParticipant, reorderParticipants, updateParticipantOrder,
+  } = useParticipantContext();
 
   const sortByRoll = () => {
     reorderParticipants('roll');
   };
 
   const onDone = () => {
+    updateParticipantOrder();
     changePage();
   };
 
