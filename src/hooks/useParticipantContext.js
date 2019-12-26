@@ -11,6 +11,7 @@ export function useParticipantContext() {
     sortAllParticipants,
     reorderParticipants,
     setNewParticipantOrder,
+    updateParticipantOrder,
   } = useContext(ParticipantContext);
 
   return {
@@ -21,5 +22,6 @@ export function useParticipantContext() {
     sortParticipants: sortAllParticipants,
     reorderParticipants,
     setNewParticipantOrder,
+    updateParticipantOrder,
   };
 }
