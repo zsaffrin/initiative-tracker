@@ -24,7 +24,7 @@ const Header = () => {
   const { activePage, changePage } = usePageContext();
   return (
     <StyledHeader>
-      <TitleCell onClick={() => changePage()}>
+      <TitleCell>
         <Icon name="dice-d20" />
         {' '}
         Initiative Tracker
