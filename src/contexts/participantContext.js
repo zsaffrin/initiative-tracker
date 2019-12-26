@@ -48,6 +48,11 @@ const ParticipantProvider = ({ children }) => {
     setParticipants(orderedParticipants);
   };
 
+  const updateParticipantOrder = () => {
+    const orderedParticipants = refreshParticipantOrder(participants);
+    setParticipants(orderedParticipants);
+  };
+
   const setNewParticipantOrder = (participant, newOrder) => setParticipants(participants
     .reduce((acc, p) => {
       let orderToSet = p.order;
@@ -73,6 +78,7 @@ const ParticipantProvider = ({ children }) => {
       sortAllParticipants,
       reorderParticipants,
       setNewParticipantOrder,
+      updateParticipantOrder,
     }}
     >
       {children}
