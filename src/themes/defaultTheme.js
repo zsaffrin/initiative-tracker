@@ -35,6 +35,10 @@ const tracker = {
   currentTurnItemBg: color.accent,
   currentTurnItemColor: color.primary,
 };
+const footer = {
+  footerBg: color.primary,
+  footerColor: color.gray,
+};
 
 const defaultTheme = {
   space,
@@ -43,6 +47,7 @@ const defaultTheme = {
   header,
   inputs,
   tracker,
+  footer,
 };
 
 export default defaultTheme;
