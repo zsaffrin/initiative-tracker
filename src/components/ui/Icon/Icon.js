@@ -1,10 +1,10 @@
 import React from 'react';
-import { string } from 'prop-types';
+import { oneOfType, shape, string } from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Icon = ({ name, ...props }) => <FontAwesomeIcon icon={name} {...props} />;
 Icon.propTypes = {
-  name: string,
+  name: oneOfType([shape({}), string]),
 };
 Icon.defaultProps = { name: '' };
 
