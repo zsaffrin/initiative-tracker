@@ -6,6 +6,7 @@ import {
   faCog,
   faDiceD20,
   faEdit,
+  faHeart,
   faAngleLeft,
   faAngleRight,
   faArrowDown,
@@ -14,6 +15,7 @@ import {
   faWrench,
   faUndo,
 } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 
 import { defaultTheme } from '../themes';
@@ -21,12 +23,15 @@ import { PageProvider, ParticipantProvider, TurnProvider } from '../contexts';
 import GlobalStyle from './GlobalStyle';
 import Header from './Header';
 import Router from './Router';
+import Footer from './Footer';
 
 library.add(
   faBan,
   faCog,
   faDiceD20,
   faEdit,
+  faGithub,
+  faHeart,
   faAngleLeft,
   faAngleRight,
   faArrowDown,
@@ -39,7 +44,7 @@ library.add(
 const AppLayout = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
-  min-height: 1vh;
+  min-height: 97vh;
 `;
 
 const App = () => (
@@ -52,6 +57,7 @@ const App = () => (
             <Header />
             <Router />
           </AppLayout>
+          <Footer />
         </TurnProvider>
       </ParticipantProvider>
     </PageProvider>
