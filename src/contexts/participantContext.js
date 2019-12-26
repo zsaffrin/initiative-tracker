@@ -15,9 +15,11 @@ const ParticipantProvider = ({ children }) => {
   }, [participants]);
 
   const addParticipant = () => {
+    const maxOrder = participants.reduce((acc, p) => (p.order > acc ? p.order : acc), 1);
     setParticipants([...participants, {
       id: generateId(7),
       name: '',
+      order: maxOrder + 1,
       roll: 0,
     }]);
   };
