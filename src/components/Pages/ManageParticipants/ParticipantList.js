@@ -35,12 +35,14 @@ const CenteredDiv = styled.div`
 
 const ParticipantList = ({ items }) => (
   <StyledList>
-    <ListHeader>
-      <div> </div>
-      <CenteredDiv>Roll</CenteredDiv>
-      <div>Name</div>
-      <div> </div>
-    </ListHeader>
+    {items.length > 0 && (
+      <ListHeader>
+        <div> </div>
+        <CenteredDiv>Roll</CenteredDiv>
+        <div>Name</div>
+        <div> </div>
+      </ListHeader>
+    )}
     {items.map((item) => <ParticipantListItem participant={item} key={item.id} />)}
   </StyledList>
 );
