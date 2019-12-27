@@ -2,6 +2,7 @@ import React from 'react';
 import { arrayOf, shape } from 'prop-types';
 import styled from 'styled-components';
 
+import { Placeholder } from '../../ui';
 import ParticipantListItem from './ParticipantListItem';
 
 const StyledList = styled.ul(({ theme }) => {
@@ -35,15 +36,21 @@ const CenteredDiv = styled.div`
 
 const ParticipantList = ({ items }) => (
   <StyledList>
-    {items.length > 0 && (
-      <ListHeader>
-        <div> </div>
-        <CenteredDiv>Roll</CenteredDiv>
-        <div>Name</div>
-        <div> </div>
-      </ListHeader>
+    {items.length > 0 ? (
+      <>
+        <ListHeader>
+          <div> </div>
+          <CenteredDiv>Roll</CenteredDiv>
+          <div>Name</div>
+          <div> </div>
+        </ListHeader>
+        {items.map((item) => <ParticipantListItem participant={item} key={item.id} />)}
+      </>
+    ) : (
+      <Placeholder>
+    No participants added
+      </Placeholder>
     )}
-    {items.map((item) => <ParticipantListItem participant={item} key={item.id} />)}
   </StyledList>
 );
 ParticipantList.propTypes = {
