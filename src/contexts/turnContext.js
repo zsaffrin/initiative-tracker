@@ -29,11 +29,12 @@ const TurnProvider = ({ children }) => {
     }
   };
   const prevTurn = () => {
-    if (turn === 1) {
+    if (turn <= 1) {
       if (round > 1) {
         setRound(round - 1);
         setTurn(participants.length);
       }
+      setTurn(1);
     } else {
       setTurn(turn - 1);
     }
