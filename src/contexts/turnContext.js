@@ -33,8 +33,9 @@ const TurnProvider = ({ children }) => {
       if (round > 1) {
         setRound(round - 1);
         setTurn(participants.length);
+      } else {
+        setTurn(1);
       }
-      setTurn(1);
     } else {
       setTurn(turn - 1);
     }
