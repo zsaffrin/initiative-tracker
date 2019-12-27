@@ -8,6 +8,8 @@ const space = {
 const color = {
   white: '#fff',
   gray: '#bac6ca',
+  lightgray: '#ebeeef',
+  darkgray: '#aab5b9',
 
   // Brand colors
   primary: '#001f3f',
