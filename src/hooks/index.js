@@ -1,7 +1,3 @@
-import { usePageContext } from './usePageContext';
-import { useParticipantContext } from './useParticipantContext';
-import { useTurnContext } from './useTurnContext';
+import { useCollection, useDocument } from './firestoreHooks';
 
-export {
-  usePageContext, useParticipantContext, useTurnContext,
-};
+export { useCollection, useDocument };
