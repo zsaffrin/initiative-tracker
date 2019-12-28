@@ -16,14 +16,12 @@ import {
   faUndo,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 
 
 import { defaultTheme } from '../themes';
-import { PageProvider, ParticipantProvider, TurnProvider } from '../contexts';
 import GlobalStyle from './GlobalStyle';
 import Header from './Header';
-import Router from './Router';
 import Footer from './Footer';
 
 library.add(
@@ -42,8 +40,8 @@ library.add(
   faUndo,
 );
 
-ReactGA.initialize('UA-155048894-1');
-ReactGA.pageview(window.location.pathname + window.location.search);
+// ReactGA.initialize('UA-155048894-1');
+// ReactGA.pageview(window.location.pathname + window.location.search);
 
 const AppLayout = styled.div`
   display: grid;
@@ -53,18 +51,12 @@ const AppLayout = styled.div`
 
 const App = () => (
   <ThemeProvider theme={defaultTheme}>
-    <PageProvider>
-      <ParticipantProvider>
-        <TurnProvider>
-          <GlobalStyle />
-          <AppLayout>
-            <Header />
-            <Router />
-          </AppLayout>
-          <Footer />
-        </TurnProvider>
-      </ParticipantProvider>
-    </PageProvider>
+    <GlobalStyle />
+    <AppLayout>
+      <Header />
+      <div />
+    </AppLayout>
+    <Footer />
   </ThemeProvider>
 );
 

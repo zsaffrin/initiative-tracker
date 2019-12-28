@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { usePageContext } from '../../hooks';
 import { Icon } from '../ui';
 
 const StyledHeader = styled.div(({ theme }) => {
@@ -20,26 +19,15 @@ const TitleCell = styled.div`
   text-transform: uppercase;
 `;
 
-const Header = () => {
-  const { activePage, changePage } = usePageContext();
-  return (
-    <StyledHeader>
-      <TitleCell>
-        <Icon name="dice-d20" />
-        {' '}
+const Header = () => (
+  <StyledHeader>
+    <TitleCell>
+      <Icon name="dice-d20" />
+      {' '}
         Initiative Tracker
-      </TitleCell>
-      <div>
-        {!activePage && (
-          <Icon
-            name="cog"
-            fixedWidth
-            onClick={() => changePage('manageParticipants')}
-          />
-        )}
-      </div>
-    </StyledHeader>
-  );
-};
+    </TitleCell>
+    <div />
+  </StyledHeader>
+);
 
 export default Header;
