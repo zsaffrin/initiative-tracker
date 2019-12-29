@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
@@ -21,8 +22,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 import { defaultTheme } from '../themes';
 import GlobalStyle from './GlobalStyle';
-import Header from './Header';
-import Footer from './Footer';
+import Content from './Content';
 
 library.add(
   faBan,
@@ -45,18 +45,17 @@ library.add(
 
 const AppLayout = styled.div`
   display: grid;
-  grid-template-rows: auto 1fr;
-  min-height: 97vh;
+  min-height: 99vh;
 `;
 
 const App = () => (
   <ThemeProvider theme={defaultTheme}>
     <GlobalStyle />
-    <AppLayout>
-      <Header />
-      <div />
-    </AppLayout>
-    <Footer />
+    <Router>
+      <AppLayout>
+        <Content />
+      </AppLayout>
+    </Router>
   </ThemeProvider>
 );
 
