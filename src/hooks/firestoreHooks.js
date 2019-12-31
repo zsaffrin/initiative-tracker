@@ -29,7 +29,7 @@ export function useDocument(docQuery) {
     firebase.db.doc(docQuery),
   );
 
-  const processedValue = value ? { ...value.data(), id: value.id } : value;
+  const processedValue = value ? { ...value.data(), exists: value.exists, id: value.id } : value;
 
   return [processedValue, loading, error];
 }
