@@ -45,7 +45,7 @@ library.add(
 
 const AppLayout = styled.div`
   display: grid;
-  min-height: 99vh;
+  min-height: 100vh;
 `;
 
 const App = () => (
