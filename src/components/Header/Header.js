@@ -1,7 +1,9 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Icon } from '../ui';
+import { useListContext } from '../../hooks';
+import { Icon, Link } from '../ui';
 
 const StyledHeader = styled.div(({ theme }) => {
   const { header, space } = theme;
@@ -19,15 +21,28 @@ const TitleCell = styled.div`
   text-transform: uppercase;
 `;
 
-const Header = () => (
-  <StyledHeader>
-    <TitleCell>
-      <Icon name="dice-d20" />
-      {' '}
+const Header = () => {
+  const list = useListContext();
+  const { sharekey } = useParams();
+
+  return (
+    <StyledHeader>
+      <TitleCell>
+        <Link to="/">
+          <Icon name="dice-d20" />
+        </Link>
+        {' '}
         Initiative Tracker
-    </TitleCell>
-    <div />
-  </StyledHeader>
-);
+      </TitleCell>
+      <div>
+        {list.access === 'edit' && (
+          <Link to={`/session/${sharekey}/edit`}>
+            <Icon name="cog" />
+          </Link>
+        )}
+      </div>
+    </StyledHeader>
+  );
+};
 
 export default Header;
