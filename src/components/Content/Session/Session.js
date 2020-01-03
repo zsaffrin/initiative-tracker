@@ -25,8 +25,13 @@ const PageContent = styled.div(({ theme }) => {
 const Session = ({ list }) => {
   const { mode, sharekey } = useParams();
 
-  if (mode && mode !== 'edit') {
-    return <Redirect to={`/session/${sharekey}`} />;
+  let pageContent = <ViewSession />;
+  if (mode) {
+    if (mode === 'edit') {
+      pageContent = <EditSession />;
+    } else {
+      return <Redirect to={`/session/${sharekey}`} />;
+    }
   }
 
   return (
@@ -34,9 +39,7 @@ const Session = ({ list }) => {
       <ListProvider list={list}>
         <Header />
         <PageContent>
-          {mode === 'edit'
-            ? <EditSession />
-            : <ViewSession />}
+          {pageContent}
         </PageContent>
         <Footer />
       </ListProvider>
