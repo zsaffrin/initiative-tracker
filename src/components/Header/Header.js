@@ -22,7 +22,7 @@ const TitleCell = styled.div`
 `;
 
 const Header = () => {
-  const list = useListContext();
+  const { list } = useListContext();
   const { sharekey } = useParams();
 
   return (

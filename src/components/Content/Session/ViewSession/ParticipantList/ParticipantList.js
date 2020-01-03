@@ -1,11 +1,12 @@
 import React from 'react';
 
 import { useListContext } from '../../../../../hooks';
+
 import ParticipantListItem from './ParticipantListItem';
 
 const ParticipantList = () => {
-  const list = useListContext();
-  const { participants } = list || [];
+  const { list } = useListContext();
+  const { participants } = list;
 
   return (
     <div>

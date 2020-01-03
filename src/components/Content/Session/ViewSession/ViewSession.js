@@ -46,7 +46,7 @@ const TurnActions = styled.div(({ theme }) => {
 });
 
 const ViewSession = () => {
-  const list = useListContext();
+  const { list } = useListContext();
   const { access, round } = list;
 
   return (
