@@ -20,37 +20,6 @@ class Firebase {
     this.db = firebase.firestore();
   }
 
-  login(email, password) {
-    return this.auth
-      .signInWithEmailAndPassword(email, password)
-      .then((res) => ({ status: 'success', result: res }))
-      .catch((err) => ({ status: 'error', result: err.message }));
-  }
-
-  logout() {
-    this.auth.signOut();
-  }
-
-  getDoc(collection, docQuery) {
-    return this.db
-      .collection(collection)
-      .doc(docQuery)
-      .get()
-      .then((doc) => (doc.exists ? doc.data() : null))
-      .catch((err) => console.error(err.message));
-  }
-
-  getCollection(collection) {
-    return this.db
-      .collection(collection)
-      .get()
-      .then((snapshot) => snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      })))
-      .catch((err) => console.error(err.message));
-  }
-
   addDoc(collection, doc) {
     return this.db
       .collection(collection)
