@@ -2,10 +2,11 @@ import React from 'react';
 import { Redirect, useHistory, useParams } from 'react-router-dom';
 
 import { useListContext } from '../../../../hooks';
-import { Button } from '../../../ui';
+import { Button, ButtonRow, H } from '../../../ui';
+import ParticipantList from './ParticipantList';
 
 const EditSession = () => {
-  const list = useListContext();
+  const { list } = useListContext();
   const { sharekey } = useParams();
   const history = useHistory();
 
@@ -15,9 +16,11 @@ const EditSession = () => {
 
   return (
     <div>
-      <div>
+      <H l={2} centered>Manage Session</H>
+      <ParticipantList />
+      <ButtonRow>
         <Button primary onClick={() => history.push(`/session/${sharekey}`)}>Done</Button>
-      </div>
+      </ButtonRow>
     </div>
   );
 };
