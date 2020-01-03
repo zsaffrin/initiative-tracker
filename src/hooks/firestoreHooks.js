@@ -6,6 +6,11 @@ import {
 
 import { FirebaseContext } from '../contexts';
 
+export function useFirestore() {
+  const firebase = useContext(FirebaseContext);
+  return firebase.db;
+}
+
 export function useCollection(collectionName, query) {
   const firebase = useContext(FirebaseContext);
   const [value, loading, error] = useFirestoreCollection(
