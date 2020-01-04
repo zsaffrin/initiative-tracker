@@ -3,7 +3,7 @@ import {
   arrayOf, oneOfType, node, shape,
 } from 'prop-types';
 
-import { generateId } from '../utils';
+import { generateId, sortParticipants } from '../utils';
 import { FirebaseContext } from './firebaseContext';
 
 const ListContext = createContext();
@@ -13,6 +13,15 @@ const ListProvider = ({ list, children }) => {
 
   const updateList = (listId, newData) => {
     firebase.updateDoc(`lists/${listId}`, newData);
+  };
+
+  const sortParticipantsByKey = (sortKey) => {
+    const { id, participants, ...rest } = list;
+    const sortedParticipants = sortParticipants(participants, sortKey);
+    updateList(id, {
+      ...rest,
+      participants: sortedParticipants,
+    });
   };
 
   const addParticipant = () => {
@@ -54,6 +63,7 @@ const ListProvider = ({ list, children }) => {
     <ListContext.Provider value={{
       list,
       updateList,
+      sortParticipantsByKey,
       addParticipant,
       updateParticipant,
       deleteParticipant,
