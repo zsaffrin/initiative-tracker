@@ -15,6 +15,22 @@ const ListProvider = ({ list, children }) => {
     firebase.updateDoc(`lists/${listId}`, newData);
   };
 
+  const setRound = (newRound) => {
+    const { id, ...rest } = list;
+    updateList(id, {
+      ...rest,
+      round: newRound,
+    });
+  };
+
+  const setTurn = (newTurn) => {
+    const { id, round, ...rest } = list;
+    updateList(id, {
+      ...rest,
+      turn: newTurn,
+    });
+  };
+
   const sortParticipantsByKey = (sortKey) => {
     const { id, participants, ...rest } = list;
     const sortedParticipants = sortParticipants(participants, sortKey);
@@ -63,6 +79,8 @@ const ListProvider = ({ list, children }) => {
     <ListContext.Provider value={{
       list,
       updateList,
+      setRound,
+      setTurn,
       sortParticipantsByKey,
       addParticipant,
       updateParticipant,
