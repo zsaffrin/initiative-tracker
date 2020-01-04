@@ -12,6 +12,7 @@ const PageLayout = styled.div(({ theme }) => {
   return `
     display: grid;
     grid-gap: ${space.md};
+    align-content: start;
   `;
 });
 
