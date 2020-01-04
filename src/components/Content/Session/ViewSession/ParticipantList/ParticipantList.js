@@ -11,7 +11,7 @@ const ParticipantList = () => {
   return (
     <div>
       {participants.length > 0
-        ? participants.map((p) => <ParticipantListItem item={p} key={p.id} />)
+        ? participants.map((p, i) => <ParticipantListItem item={p} order={i + 1} key={p.id} />)
         : 'No participants'}
     </div>
   );
