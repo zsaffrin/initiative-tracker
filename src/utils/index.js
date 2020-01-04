@@ -1,7 +1,7 @@
 import {
-  generateId, sortParticipantsByRoll, refreshParticipantOrder, sortParticipants,
+  generateId, refreshParticipantOrder, sortParticipants,
 } from './participantUtils';
 
 export {
-  generateId, sortParticipantsByRoll, refreshParticipantOrder, sortParticipants,
+  generateId, refreshParticipantOrder, sortParticipants,
 };
