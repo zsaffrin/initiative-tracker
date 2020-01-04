@@ -31,6 +31,32 @@ const ListProvider = ({ list, children }) => {
     });
   };
 
+  const decrementTurn = () => {
+    const { participants, round, turn } = list;
+
+    if (turn <= 1) {
+      if (round > 1) {
+        setRound(round - 1);
+        setTurn(participants.length);
+      } else {
+        setTurn(1);
+      }
+    } else {
+      setTurn(turn - 1);
+    }
+  };
+
+  const incrementTurn = () => {
+    const { participants, round, turn } = list;
+
+    if (turn < participants.length) {
+      setTurn(turn + 1);
+    } else {
+      setRound(round + 1);
+      setTurn(1);
+    }
+  };
+
   const sortParticipantsByKey = (sortKey) => {
     const { id, participants, ...rest } = list;
     const sortedParticipants = sortParticipants(participants, sortKey);
@@ -81,6 +107,8 @@ const ListProvider = ({ list, children }) => {
       updateList,
       setRound,
       setTurn,
+      decrementTurn,
+      incrementTurn,
       sortParticipantsByKey,
       addParticipant,
       updateParticipant,

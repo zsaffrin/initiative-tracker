@@ -26,7 +26,13 @@ const DisplayWithIncrement = styled.div(({ theme }) => {
 });
 
 const ManageTurn = () => {
-  const { list, setRound, setTurn } = useListContext();
+  const {
+    list,
+    setRound,
+    setTurn,
+    decrementTurn,
+    incrementTurn,
+  } = useListContext();
   const [confirmReset, setConfirmReset] = useState(false);
   const { round, turn, participants } = list;
 
@@ -40,28 +46,6 @@ const ManageTurn = () => {
     setRound(1);
     setTurn(1);
     setConfirmReset(false);
-  };
-
-  const decrementTurn = () => {
-    if (turn <= 1) {
-      if (round > 1) {
-        setRound(round - 1);
-        setTurn(participants.length);
-      } else {
-        setTurn(1);
-      }
-    } else {
-      setTurn(turn - 1);
-    }
-  };
-
-  const incrementTurn = () => {
-    if (turn < participants.length) {
-      setTurn(turn + 1);
-    } else {
-      setRound(round + 1);
-      setTurn(1);
-    }
   };
 
   return (
