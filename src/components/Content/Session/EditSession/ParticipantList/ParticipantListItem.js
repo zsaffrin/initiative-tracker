@@ -12,7 +12,7 @@ const StyledItem = styled.li(({ confirmDelete, theme }) => {
     padding: ${space.md};
     display: grid;
     grid-gap: ${space.sm};
-    grid-template-columns: ${confirmDelete ? 'repeat(3, auto)' : '1.25em 2.5em 1fr auto'};
+    grid-template-columns: ${confirmDelete ? 'repeat(3, auto)' : '1.25em 2.5em 1fr 1em'};
     align-items: center;
     justify-content: center;
   `;
