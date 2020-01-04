@@ -32,7 +32,7 @@ const ManageTurn = () => {
 
   useEffect(() => {
     if (turn > participants.length) {
-      setTurn(participants.length);
+      setTurn(participants.length > 1 ? participants.length : 1);
     }
   }, [participants, turn, setTurn]);
 
