@@ -5,13 +5,14 @@ import { ButtonRow, Button } from '../../../../ui';
 import ParticipantListItem from './ParticipantListItem';
 
 const ParticipantList = () => {
-  const { list, addParticipant } = useListContext();
+  const { list, addParticipant, sortParticipantsByKey } = useListContext();
   const { participants } = list;
 
   return (
     <div>
       <ButtonRow>
-        <Button small onClick={addParticipant}>Add New</Button>
+        <Button primary small onClick={addParticipant}>Add New</Button>
+        <Button small onClick={() => sortParticipantsByKey('roll')}>Sort By Roll</Button>
       </ButtonRow>
       <div>
         {participants.length > 0
