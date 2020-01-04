@@ -24,8 +24,29 @@ const ListProvider = ({ list, children }) => {
         {
           id: generateId(10),
           name: '',
+          roll: 0,
         },
       ],
+    });
+  };
+
+  const updateParticipant = (participant) => {
+    const { id, participants, ...rest } = list;
+    const updatedParticipants = participants.reduce((acc, p) => (p.id === participant.id
+      ? [...acc, participant]
+      : [...acc, p]), []);
+    updateList(id, {
+      ...rest,
+      participants: updatedParticipants,
+    });
+  };
+
+  const deleteParticipant = (participant) => {
+    const { id, participants, ...rest } = list;
+    const updatedParticipants = participants.filter((p) => p.id !== participant.id);
+    updateList(id, {
+      ...rest,
+      participants: updatedParticipants,
     });
   };
 
@@ -34,6 +55,8 @@ const ListProvider = ({ list, children }) => {
       list,
       updateList,
       addParticipant,
+      updateParticipant,
+      deleteParticipant,
     }}
     >
       {children}
