@@ -8,7 +8,6 @@ import { Button, Icon, Input } from '../../../../ui';
 const StyledItem = styled.li(({ confirmDelete, theme }) => {
   const { space } = theme;
   return `
-    border-radius: 4px;
     padding: ${space.md};
     display: grid;
     grid-gap: ${space.sm};
