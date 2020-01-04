@@ -46,7 +46,7 @@ const TurnActions = styled.div(({ theme }) => {
 });
 
 const ViewSession = () => {
-  const { list } = useListContext();
+  const { list, decrementTurn, incrementTurn } = useListContext();
   const { access, round } = list;
 
   return (
@@ -58,8 +58,8 @@ const ViewSession = () => {
         </div>
         {access === 'edit' && (
         <TurnActions>
-          <Button small>Prev Turn</Button>
-          <Button primary>Next Turn</Button>
+          <Button small onClick={decrementTurn}>Prev Turn</Button>
+          <Button primary onClick={incrementTurn}>Next Turn</Button>
         </TurnActions>
         )}
       </TopRow>
