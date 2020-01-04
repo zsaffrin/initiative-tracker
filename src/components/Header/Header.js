@@ -23,7 +23,7 @@ const TitleCell = styled.div`
 
 const Header = () => {
   const { list } = useListContext();
-  const { sharekey } = useParams();
+  const { mode, sharekey } = useParams();
 
   return (
     <StyledHeader>
@@ -35,7 +35,7 @@ const Header = () => {
         Initiative Tracker
       </TitleCell>
       <div>
-        {list.access === 'edit' && (
+        {list.access === 'edit' && mode !== 'edit' && (
           <Link to={`/session/${sharekey}/edit`}>
             <Icon name="cog" />
           </Link>
