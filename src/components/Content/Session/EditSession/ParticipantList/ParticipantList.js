@@ -5,14 +5,11 @@ import { useListContext } from '../../../../../hooks';
 import { ButtonRow, Button } from '../../../../ui';
 import ParticipantListItem from './ParticipantListItem';
 
-const StyledList = styled.ul(({ theme }) => {
-  const { space } = theme;
-  return `
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  `;
-});
+const StyledList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
 
 const ParticipantList = () => {
   const { list, addParticipant, sortParticipantsByKey } = useListContext();
