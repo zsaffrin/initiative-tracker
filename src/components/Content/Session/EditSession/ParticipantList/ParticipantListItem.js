@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { shape } from 'prop-types';
+import { shape, number } from 'prop-types';
+import { sortableElement, sortableHandle } from 'react-sortable-hoc';
 import styled from 'styled-components';
 
 import { useListContext } from '../../../../../hooks';
@@ -16,16 +17,20 @@ const StyledItem = styled.li(({ confirmDelete, theme }) => {
     justify-content: center;
   `;
 });
-const OrderCell = styled.div`
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-`;
 const RollCell = styled.div`
   font-weight: bold;
   text-align: center;
 `;
 
-const ParticipantListItem = ({ item }) => {
+const DragHandle = sortableHandle(() => <Icon name="bars" />);
+
+const SortableItem = sortableElement(({ confirmDelete, children }) => (
+  <StyledItem confirmDelete={confirmDelete}>
+    {children}
+  </StyledItem>
+));
+
+const ParticipantListItem = ({ index, item }) => {
   const { updateParticipant, deleteParticipant } = useListContext();
   const [confirmDelete, setConfirmDelete] = useState(false);
   const { name, roll } = item;
@@ -42,7 +47,7 @@ const ParticipantListItem = ({ item }) => {
   };
 
   return (
-    <StyledItem confirmDelete={confirmDelete ? 1 : 0}>
+    <SortableItem index={index} confirmDelete={confirmDelete ? 1 : 0}>
       {confirmDelete ? (
         <>
           <div>
@@ -55,10 +60,7 @@ const ParticipantListItem = ({ item }) => {
         </>
       ) : (
         <>
-          <OrderCell>
-            <Icon name="arrow-up" fixedWidth />
-            <Icon name="arrow-down" fixedWidth />
-          </OrderCell>
+          <DragHandle />
           <RollCell>
             <Input
               id="roll"
@@ -74,13 +76,15 @@ const ParticipantListItem = ({ item }) => {
           <Icon name="trash-alt" onClick={() => setConfirmDelete(true)} />
         </>
       )}
-    </StyledItem>
+    </SortableItem>
   );
 };
 ParticipantListItem.propTypes = {
+  index: number,
   item: shape({}),
 };
 ParticipantListItem.defaultProps = {
+  index: 0,
   item: {},
 };
 

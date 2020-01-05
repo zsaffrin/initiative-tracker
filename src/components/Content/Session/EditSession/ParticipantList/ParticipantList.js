@@ -1,7 +1,10 @@
 import React from 'react';
+import { sortableContainer } from 'react-sortable-hoc';
+
 import styled from 'styled-components';
 
 import { useListContext } from '../../../../../hooks';
+import { moveArrayItem } from '../../../../../utils';
 import { ButtonRow, Button } from '../../../../ui';
 import ParticipantListItem from './ParticipantListItem';
 
@@ -34,9 +37,19 @@ const Padded = styled.div(({ theme }) => {
   `;
 });
 
+const SortableContainer = sortableContainer(({ children }) => (
+  <StyledList>{children}</StyledList>
+));
+
 const ParticipantList = () => {
-  const { list, addParticipant, sortParticipantsByKey } = useListContext();
+  const {
+    list, addParticipant, setParticipants, sortParticipantsByKey,
+  } = useListContext();
   const { participants } = list;
+
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    setParticipants(moveArrayItem(participants, oldIndex, newIndex));
+  };
 
   return (
     <div>
@@ -44,7 +57,7 @@ const ParticipantList = () => {
         <Button primary small onClick={addParticipant}>Add New</Button>
         <Button small onClick={() => sortParticipantsByKey('roll')}>Sort By Roll</Button>
       </ButtonRow>
-      <StyledList>
+      <SortableContainer onSortEnd={onSortEnd} useDragHandle>
         {participants.length > 0
           ? (
             <>
@@ -54,11 +67,11 @@ const ParticipantList = () => {
                 <Padded>Name</Padded>
                 <div />
               </HeaderRow>
-              {participants.map((p) => <ParticipantListItem item={p} key={p.id} />)}
+              {participants.map((p, i) => <ParticipantListItem index={i} item={p} key={p.id} />)}
             </>
           )
           : 'No participants'}
-      </StyledList>
+      </SortableContainer>
     </div>
   );
 };
