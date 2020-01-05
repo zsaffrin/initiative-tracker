@@ -1,8 +1,9 @@
 import React from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { useListContext } from '../../../../hooks';
-import { Button } from '../../../ui';
+import { ButtonRow, Button } from '../../../ui';
 import ParticipantList from './ParticipantList';
 
 const PageLayout = styled.div(({ theme }) => {
@@ -46,6 +47,8 @@ const TurnActions = styled.div(({ theme }) => {
 });
 
 const ViewSession = () => {
+  const history = useHistory();
+  const { sharekey } = useParams();
   const { list, decrementTurn, incrementTurn } = useListContext();
   const { access, round } = list;
 
@@ -66,6 +69,9 @@ const ViewSession = () => {
       <div>
         <ParticipantList />
       </div>
+      <ButtonRow>
+        <Button small onClick={() => history.push(`/session/${sharekey}/share`)}>Share Session</Button>
+      </ButtonRow>
     </PageLayout>
   );
 };
