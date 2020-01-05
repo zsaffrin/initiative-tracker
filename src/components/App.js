@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faBan,
+  faBars,
   faCog,
   faDiceD20,
   faEdit,
@@ -26,6 +27,7 @@ import Content from './Content';
 
 library.add(
   faBan,
+  faBars,
   faCog,
   faDiceD20,
   faEdit,
