@@ -1,11 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-import DefaultEntry from './DefaultEntry'
+import DefaultEntry from './DefaultEntry';
 
-const Entry = () => {
-  return (
-    <DefaultEntry />
-  )
-}
+const Entry = () => (
+  <DefaultEntry />
+);
 
-export default Entry
+export default Entry;
