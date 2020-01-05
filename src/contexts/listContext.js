@@ -57,6 +57,14 @@ const ListProvider = ({ list, children }) => {
     }
   };
 
+  const setParticipants = (newParticipants) => {
+    const { id, participants, ...rest } = list;
+    updateList(id, {
+      ...rest,
+      participants: newParticipants,
+    });
+  };
+
   const sortParticipantsByKey = (sortKey) => {
     const { id, participants, ...rest } = list;
     const sortedParticipants = sortParticipants(participants, sortKey);
@@ -109,6 +117,7 @@ const ListProvider = ({ list, children }) => {
       setTurn,
       decrementTurn,
       incrementTurn,
+      setParticipants,
       sortParticipantsByKey,
       addParticipant,
       updateParticipant,
