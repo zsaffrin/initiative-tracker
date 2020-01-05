@@ -8,6 +8,7 @@ import Header from '../../Header';
 import Footer from '../../Footer';
 import ViewSession from './ViewSession';
 import EditSession from './EditSession';
+import ShareSession from './ShareSession';
 
 const PageLayout = styled.div`
   display: grid;
@@ -29,6 +30,8 @@ const Session = ({ list }) => {
   if (mode) {
     if (mode === 'edit') {
       pageContent = <EditSession />;
+    } else if (mode === 'share') {
+      pageContent = <ShareSession />;
     } else {
       return <Redirect to={`/session/${sharekey}`} />;
     }
