@@ -18,7 +18,7 @@ import {
   faUndo,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-// import ReactGA from 'react-ga';
+import ReactGA from 'react-ga';
 
 
 import { defaultTheme } from '../themes';
@@ -42,8 +42,8 @@ library.add(
   faUndo,
 );
 
-// ReactGA.initialize('UA-155048894-1');
-// ReactGA.pageview(window.location.pathname + window.location.search);
+ReactGA.initialize('UA-155048894-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const AppLayout = styled.div`
   display: grid;
