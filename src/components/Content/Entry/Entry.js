@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
+import { useFirebase } from '../../../hooks';
 import { Button, Icon, Input } from '../../ui';
 
 const PageLayout = styled.div(({ theme }) => {
@@ -34,7 +35,9 @@ const InputCell = styled.div`
 
 const Entry = () => {
   const [enteredKey, setEnteredKey] = useState('');
+  const [adding, setAdding] = useState(false);
   const history = useHistory();
+  const firebase = useFirebase();
 
   const handleKeyFieldChange = (e) => {
     setEnteredKey(e.target.value);
@@ -42,6 +45,29 @@ const Entry = () => {
 
   const handleKeySubmit = () => {
     history.push(`/session/${enteredKey}`);
+  };
+
+  const handleNewSession = async () => {
+    setAdding(true);
+    return firebase.db.collection('lists').add({
+      round: 1,
+      turn: 1,
+      participants: [],
+      created: new Date(),
+    }).then(async (list) => {
+      const viewKey = await firebase.db.collection('keys').add({
+        type: 'view',
+        list: list.id,
+        created: new Date(),
+      });
+      const editKey = await firebase.db.collection('keys').add({
+        type: 'edit',
+        list: list.id,
+        created: new Date(),
+      });
+
+      return { list, viewKey, editKey };
+    }).then(({ editKey }) => history.push(`/session/${editKey.id}`));
   };
 
   return (
@@ -55,7 +81,9 @@ const Entry = () => {
       <div>
         <div>Start a new session!</div>
         <div>
-          <Button>New Session</Button>
+          {adding
+            ? <span>Creating...</span>
+            : <Button onClick={handleNewSession}>New Session</Button>}
         </div>
       </div>
       <div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
+import { useFirebase } from '../../../hooks';
 import {
   Button, Icon, Input, Link,
 } from '../../ui';
@@ -36,6 +37,8 @@ const InputCell = styled.div`
 
 const SessionNotFound = () => {
   const [enteredKey, setEnteredKey] = useState('');
+  const [adding, setAdding] = useState(false);
+  const firebase = useFirebase();
   const history = useHistory();
 
   const handleKeyFieldChange = (e) => {
@@ -44,6 +47,29 @@ const SessionNotFound = () => {
 
   const handleKeySubmit = () => {
     history.push(`/session/${enteredKey}`);
+  };
+
+  const handleNewSession = async () => {
+    setAdding(true);
+    return firebase.db.collection('lists').add({
+      round: 1,
+      turn: 1,
+      participants: [],
+      created: new Date(),
+    }).then(async (list) => {
+      const viewKey = await firebase.db.collection('keys').add({
+        type: 'view',
+        list: list.id,
+        created: new Date(),
+      });
+      const editKey = await firebase.db.collection('keys').add({
+        type: 'edit',
+        list: list.id,
+        created: new Date(),
+      });
+
+      return { list, viewKey, editKey };
+    }).then(({ editKey }) => history.push(`/session/${editKey.id}`));
   };
 
   return (
@@ -75,13 +101,15 @@ const SessionNotFound = () => {
           />
         </InputCell>
         <div>
-          <Button small onClick={handleKeySubmit}>Submit</Button>
+          <Button onClick={handleKeySubmit}>Enter Key</Button>
         </div>
       </CenteredGrid>
       <CenteredGrid>
         <div>or start a new session</div>
         <div>
-          <Button small>Start New Session</Button>
+          {adding
+            ? <span>Creating...</span>
+            : <Button onClick={handleNewSession}>Start New Session</Button>}
         </div>
       </CenteredGrid>
     </PageLayout>
