@@ -6,8 +6,15 @@ import {
 
 import { FirebaseContext } from '../contexts';
 
+export function useFirebase() {
+  const firebase = useContext(FirebaseContext);
+
+  return firebase;
+}
+
 export function useFirestore() {
   const firebase = useContext(FirebaseContext);
+
   return firebase.db;
 }
 

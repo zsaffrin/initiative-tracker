@@ -1,6 +1,8 @@
-import { useCollection, useDocument, useFirestore } from './firestoreHooks';
+import {
+  useCollection, useDocument, useFirestore, useFirebase,
+} from './firebaseHooks';
 import { useListContext } from './contextHooks';
 
 export {
-  useCollection, useDocument, useFirestore, useListContext,
+  useCollection, useDocument, useFirestore, useFirebase, useListContext,
 };
