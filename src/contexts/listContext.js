@@ -16,17 +16,40 @@ const ListProvider = ({ list, children }) => {
   };
 
   const setRound = (newRound) => {
-    const { id, ...rest } = list;
+    const {
+      created, id, participants, turn,
+    } = list;
     updateList(id, {
-      ...rest,
+      created,
+      modified: new Date(),
+      participants,
+      turn,
       round: newRound,
     });
   };
 
   const setTurn = (newTurn) => {
-    const { id, round, ...rest } = list;
+    const {
+      created, id, participants, round,
+    } = list;
     updateList(id, {
-      ...rest,
+      created,
+      modified: new Date(),
+      participants,
+      round,
+      turn: newTurn,
+    });
+  };
+
+  const setRoundAndTurn = (newRound, newTurn) => {
+    const {
+      created, id, participants,
+    } = list;
+    updateList(id, {
+      created,
+      modified: new Date(),
+      participants,
+      round: newRound,
       turn: newTurn,
     });
   };
@@ -36,8 +59,7 @@ const ListProvider = ({ list, children }) => {
 
     if (turn <= 1) {
       if (round > 1) {
-        setRound(round - 1);
-        setTurn(participants.length);
+        setRoundAndTurn(round - 1, participants.length);
       } else {
         setTurn(1);
       }
@@ -52,32 +74,46 @@ const ListProvider = ({ list, children }) => {
     if (turn < participants.length) {
       setTurn(turn + 1);
     } else {
-      setRound(round + 1);
-      setTurn(1);
+      setRoundAndTurn(round + 1, 1);
     }
   };
 
   const setParticipants = (newParticipants) => {
-    const { id, participants, ...rest } = list;
+    const {
+      created, id, round, turn,
+    } = list;
     updateList(id, {
-      ...rest,
+      created,
+      modified: new Date(),
+      round,
+      turn,
       participants: newParticipants,
     });
   };
 
   const sortParticipantsByKey = (sortKey) => {
-    const { id, participants, ...rest } = list;
+    const {
+      created, id, participants, round, turn,
+    } = list;
     const sortedParticipants = sortParticipants(participants, sortKey);
     updateList(id, {
-      ...rest,
+      created,
+      modified: new Date(),
+      round,
+      turn,
       participants: sortedParticipants,
     });
   };
 
   const addParticipant = () => {
-    const { id, participants, ...rest } = list;
+    const {
+      created, id, participants, round, turn,
+    } = list;
     updateList(id, {
-      ...rest,
+      created,
+      modified: new Date(),
+      round,
+      turn,
       participants: [
         ...participants,
         {
@@ -90,21 +126,31 @@ const ListProvider = ({ list, children }) => {
   };
 
   const updateParticipant = (participant) => {
-    const { id, participants, ...rest } = list;
+    const {
+      created, id, participants, round, turn,
+    } = list;
     const updatedParticipants = participants.reduce((acc, p) => (p.id === participant.id
       ? [...acc, participant]
       : [...acc, p]), []);
     updateList(id, {
-      ...rest,
+      created,
+      modified: new Date(),
+      round,
+      turn,
       participants: updatedParticipants,
     });
   };
 
   const deleteParticipant = (participant) => {
-    const { id, participants, ...rest } = list;
+    const {
+      created, id, participants, round, turn,
+    } = list;
     const updatedParticipants = participants.filter((p) => p.id !== participant.id);
     updateList(id, {
-      ...rest,
+      created,
+      modified: new Date(),
+      round,
+      turn,
       participants: updatedParticipants,
     });
   };
