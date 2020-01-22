@@ -1,7 +1,9 @@
 import {
-  generateId, sortParticipantsByRoll, refreshParticipantOrder, sortParticipants,
+  generateId, refreshParticipantOrder, sortParticipants,
 } from './participantUtils';
+import { moveArrayItem } from './arrayUtils';
 
 export {
-  generateId, sortParticipantsByRoll, refreshParticipantOrder, sortParticipants,
+  generateId, refreshParticipantOrder, sortParticipants,
+  moveArrayItem,
 };

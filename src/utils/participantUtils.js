@@ -7,12 +7,6 @@ export const generateId = (length) => {
   return result.join('');
 };
 
-export const sortParticipantsByRoll = (participants) => [...participants].sort((a, b) => {
-  if (a.roll > b.roll) return -1;
-  if (a.roll < b.roll) return 1;
-  return 0;
-});
-
 export const sortParticipants = (participants, sortKey) => [...participants].sort((a, b) => {
   if (a[sortKey] > b[sortKey]) return -1;
   if (a[sortKey] < b[sortKey]) return 1;

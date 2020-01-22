@@ -1,8 +1,10 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faBan,
+  faBars,
   faCog,
   faDiceD20,
   faEdit,
@@ -20,14 +22,12 @@ import ReactGA from 'react-ga';
 
 
 import { defaultTheme } from '../themes';
-import { PageProvider, ParticipantProvider, TurnProvider } from '../contexts';
 import GlobalStyle from './GlobalStyle';
-import Header from './Header';
-import Router from './Router';
-import Footer from './Footer';
+import Content from './Content';
 
 library.add(
   faBan,
+  faBars,
   faCog,
   faDiceD20,
   faEdit,
@@ -47,24 +47,17 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 
 const AppLayout = styled.div`
   display: grid;
-  grid-template-rows: auto 1fr;
-  min-height: 97vh;
+  min-height: 100vh;
 `;
 
 const App = () => (
   <ThemeProvider theme={defaultTheme}>
-    <PageProvider>
-      <ParticipantProvider>
-        <TurnProvider>
-          <GlobalStyle />
-          <AppLayout>
-            <Header />
-            <Router />
-          </AppLayout>
-          <Footer />
-        </TurnProvider>
-      </ParticipantProvider>
-    </PageProvider>
+    <GlobalStyle />
+    <Router>
+      <AppLayout>
+        <Content />
+      </AppLayout>
+    </Router>
   </ThemeProvider>
 );
 

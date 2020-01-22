@@ -1,8 +1,9 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { usePageContext } from '../../hooks';
-import { Icon } from '../ui';
+import { useListContext } from '../../hooks';
+import { Icon, Link } from '../ui';
 
 const StyledHeader = styled.div(({ theme }) => {
   const { header, space } = theme;
@@ -21,21 +22,23 @@ const TitleCell = styled.div`
 `;
 
 const Header = () => {
-  const { activePage, changePage } = usePageContext();
+  const { list } = useListContext();
+  const { mode, sharekey } = useParams();
+
   return (
     <StyledHeader>
       <TitleCell>
-        <Icon name="dice-d20" />
+        <Link to="/">
+          <Icon name="dice-d20" />
+        </Link>
         {' '}
         Initiative Tracker
       </TitleCell>
       <div>
-        {!activePage && (
-          <Icon
-            name="cog"
-            fixedWidth
-            onClick={() => changePage('manageParticipants')}
-          />
+        {list.access === 'edit' && mode !== 'edit' && (
+          <Link to={`/session/${sharekey}/edit`}>
+            <Icon name="cog" />
+          </Link>
         )}
       </div>
     </StyledHeader>

@@ -17,7 +17,7 @@ const color = {
 };
 
 const app = {
-  background: '#f8fafa',
+  background: color.primary,
   color: '#3c4041',
 };
 const header = {

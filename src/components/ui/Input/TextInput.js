@@ -1,5 +1,4 @@
 import React from 'react';
-import { string, func } from 'prop-types';
 import styled from 'styled-components';
 
 const StyledInput = styled.input(({ theme }) => {
@@ -13,18 +12,8 @@ const StyledInput = styled.input(({ theme }) => {
   `;
 });
 
-const TextInput = ({ id, value, onChange }) => (
-  <StyledInput type="text" id={id} value={value} onChange={onChange} />
+const TextInput = (props) => (
+  <StyledInput type="text" {...props} />
 );
-TextInput.propTypes = {
-  id: string,
-  value: string,
-  onChange: func,
-};
-TextInput.defaultProps = {
-  id: '',
-  value: '',
-  onChange: () => {},
-};
 
 export default TextInput;

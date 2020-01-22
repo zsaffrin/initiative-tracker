@@ -8,6 +8,7 @@ const StyledRow = styled.div(({ items, theme }) => {
     display: grid;
     grid-gap: ${space.sm};
     grid-template-columns: repeat(${items}, auto);
+    align-items: center;
     justify-content: center;
     padding: ${space.lg};
   `;
