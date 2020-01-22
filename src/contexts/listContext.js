@@ -154,6 +154,7 @@ const ListProvider = ({ list, children }) => {
       updateList,
       setRound,
       setTurn,
+      setRoundAndTurn,
       decrementTurn,
       incrementTurn,
       setParticipants,
