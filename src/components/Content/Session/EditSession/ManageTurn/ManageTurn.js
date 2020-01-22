@@ -37,7 +37,7 @@ const ManageTurn = () => {
   const { round, turn, participants } = list;
 
   useEffect(() => {
-    if (turn > participants.length) {
+    if (turn !== 1 && turn > participants.length) {
       setTurn(participants.length > 1 ? participants.length : 1);
     }
   }, [participants, turn, setTurn]);
