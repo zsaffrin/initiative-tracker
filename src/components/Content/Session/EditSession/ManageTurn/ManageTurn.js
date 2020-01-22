@@ -30,6 +30,7 @@ const ManageTurn = () => {
     list,
     setRound,
     setTurn,
+    setRoundAndTurn,
     decrementTurn,
     incrementTurn,
   } = useListContext();
@@ -43,8 +44,7 @@ const ManageTurn = () => {
   }, [participants, turn, setTurn]);
 
   const resetRound = () => {
-    setRound(1);
-    setTurn(1);
+    setRoundAndTurn(1, 1);
     setConfirmReset(false);
   };
 
