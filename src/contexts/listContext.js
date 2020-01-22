@@ -106,23 +106,16 @@ const ListProvider = ({ list, children }) => {
   };
 
   const addParticipant = () => {
-    const {
-      created, id, participants, round, turn,
-    } = list;
-    updateList(id, {
-      created,
-      modified: new Date(),
-      round,
-      turn,
-      participants: [
-        ...participants,
-        {
-          id: generateId(10),
-          name: '',
-          roll: 0,
-        },
-      ],
-    });
+    const { participants } = list;
+    const newParticipants = [
+      ...participants,
+      {
+        id: generateId(10),
+        name: '',
+        roll: 0,
+      },
+    ];
+    setParticipants(newParticipants);
   };
 
   const updateParticipant = (participant) => {
