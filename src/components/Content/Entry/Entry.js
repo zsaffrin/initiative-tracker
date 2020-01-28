@@ -49,11 +49,13 @@ const Entry = () => {
 
   const handleNewSession = async () => {
     setAdding(true);
+    const curDate = new Date();
     return firebase.db.collection('lists').add({
       round: 1,
       turn: 1,
       participants: [],
-      created: new Date(),
+      created: curDate,
+      modified: curDate,
     }).then(async (list) => {
       const viewKey = await firebase.db.collection('keys').add({
         type: 'view',
