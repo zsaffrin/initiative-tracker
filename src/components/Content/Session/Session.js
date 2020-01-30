@@ -15,11 +15,17 @@ const PageLayout = styled.div`
   grid-template-rows: auto 1fr auto;
 `;
 const PageContent = styled.div(({ theme }) => {
-  const { color, space } = theme;
+  const { color } = theme;
   return `
     background: ${color.white};
+  `;
+});
+const ContentWrap = styled.div(({ theme }) => {
+  const { space } = theme;
+  return `
     padding: ${space.lg} ${space.md};
-    display: grid;
+    margin: 0 auto;
+    max-width: 32em;
   `;
 });
 
@@ -42,7 +48,9 @@ const Session = ({ list }) => {
       <ListProvider list={list}>
         <Header />
         <PageContent>
-          {pageContent}
+          <ContentWrap>
+            {pageContent}
+          </ContentWrap>
         </PageContent>
         <Footer />
       </ListProvider>

@@ -10,10 +10,17 @@ const StyledHeader = styled.div(({ theme }) => {
   return `
     background: ${header.background};
     color: ${header.color};
+  `;
+});
+const ContentWrap = styled.div(({ theme }) => {
+  const { space } = theme;
+  return `
+    align-items: center;
     display: grid;
     grid-template-columns: 1fr auto;
-    align-items: center;
     padding: ${space.md};
+    margin: 0 auto;
+    max-width: 36em;
   `;
 });
 const TitleCell = styled.div`
@@ -27,20 +34,22 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <TitleCell>
-        <Link to="/">
-          <Icon name="dice-d20" />
-        </Link>
-        {' '}
+      <ContentWrap>
+        <TitleCell>
+          <Link to="/">
+            <Icon name="dice-d20" />
+          </Link>
+          {' '}
         Initiative Tracker
-      </TitleCell>
-      <div>
-        {list.access === 'edit' && mode !== 'edit' && (
+        </TitleCell>
+        <div>
+          {list.access === 'edit' && mode !== 'edit' && (
           <Link to={`/session/${sharekey}/edit`}>
             <Icon name="cog" />
           </Link>
-        )}
-      </div>
+          )}
+        </div>
+      </ContentWrap>
     </StyledHeader>
   );
 };
